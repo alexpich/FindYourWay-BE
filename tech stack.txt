@@ -1,0 +1,10 @@
+FindYourWay is a full-stack Spring application that will asks users a series of questions. 
+Based on the users' locations and responses, FindYourWay will gives recommendations for the users to choose from.
+
+Leveraging, Google's Place and Maps API, the application is able to pull the recommended establismentments' information for the area. 
+The users are then able to view, choose, and also save a recommended destination. 
+
+Utilizing Angular and Bootstrap for the front end, we allow the user to register/login into their account, 
+and save their favorite locations, which is persisted in our Oracle database with the assistance of the Hibernate ORM Framework. 
+
+Users will be able to gain points based on their actions and they are able to cash in these points to obtain badges and coupons.
