@@ -1,9 +1,6 @@
 package com.revature.models;
 
 import java.io.Serializable;
-import java.util.Set;
-
-import javax.persistence.ManyToMany;
 
 public class FavoritePK implements Serializable {
 

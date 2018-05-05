@@ -1,18 +1,12 @@
 package com.revature.models;
 
 import java.io.Serializable;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.JoinColumn;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -64,16 +58,6 @@ public class User implements Serializable {
 	@Column(name="points")
 	@NotNull
 	private Integer points;
-
-
-//	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-//	@JoinTable(name="USER_FAVORITES",
-//			joinColumns = 
-//				@JoinColumn(name="USER_ID", referencedColumnName="userId"),
-//			inverseJoinColumns = 
-//				@JoinColumn(name="FAV_ID", referencedColumnName="userId")
-//			)
-	private Set<Favorite> favorites;
 	
 	public User() {
 	}
@@ -165,11 +149,6 @@ public class User implements Serializable {
 
 	public void setPoints(Integer points) {
 		this.points = points;
-	}
-
-	@ManyToMany(targetEntity=com.revature.models.FavoritePK.class)
-	public Set<Favorite> getFavorites() {
-		return favorites;
 	}
 
 	@Override

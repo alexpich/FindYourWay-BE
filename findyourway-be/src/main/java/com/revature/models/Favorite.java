@@ -1,11 +1,10 @@
 package com.revature.models;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.Table;
 
 @Entity
@@ -13,11 +12,9 @@ import javax.persistence.Table;
 public class Favorite implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
-	@EmbeddedId   
+	  
+	@EmbeddedId
 	private FavoritePK favoritePK;
-	
-	private Set<User> users;
 
 	public Favorite() {
 		super();
@@ -29,11 +26,6 @@ public class Favorite implements Serializable {
 
 	public void setFavoritePK(FavoritePK favoritePK) {
 		this.favoritePK = favoritePK;
-	}
-	
-	@ManyToMany(targetEntity=com.revature.models.User.class, mappedBy="favorites")
-	public Set<User> getUsers() {
-		return users;
 	}
 
 	@Override
