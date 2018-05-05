@@ -2,21 +2,11 @@ package com.revature.models;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.validation.constraints.NotNull;
-
-@Embeddable
 public class FavoritePK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name = "USER_ID")
-	@NotNull
 	private int userId;
-	
-	@Column(name = "PLACE_ID")
-	@NotNull
 	private String placeId;
 
 	public FavoritePK() {

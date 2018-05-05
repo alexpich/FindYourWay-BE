@@ -7,7 +7,6 @@ import com.revature.models.Favorite;
 public interface FavoriteService {
 	public Favorite addFavorite(Favorite newFavorite);
 	public List<Favorite> findAllFavorites();
-	public List<Favorite> findFavoriteByFavoritePK(Favorite fav);
-	public Favorite updateFavoriteByFavoritePK(Favorite fav);
+	public List<Favorite> findFavoriteByUserId(int userId);
 	public boolean deleteFavoriteByFavoritePK(Favorite fav);
 }

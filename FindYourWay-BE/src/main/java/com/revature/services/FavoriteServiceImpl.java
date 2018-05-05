@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +34,19 @@ public class FavoriteServiceImpl implements FavoriteService {
 	}
 
 	@Override
-	public List<Favorite> findFavoriteByFavoritePK(Favorite fav) {
-		return favoriteRepository.findFavoriteByFavoritePK(fav.getFavoritePK().getUserId());
-	}
-
-	@Override
-	public Favorite updateFavoriteByFavoritePK(Favorite fav) {
-		return favoriteRepository.save(fav);
+	public List<Favorite> findFavoriteByUserId(int userId) {
+		
+		List<Favorite> favList = favoriteRepository.findAll();
+		List<Favorite> myList = new ArrayList<Favorite>();
+		
+		for (Favorite favorite : favList) {
+			if(favorite.getFavoritePK().getUserId() == (userId)) {
+				myList.add(favorite);
+			}
+		}
+	
+		
+		return myList;
 	}
 
 	@Override
@@ -47,7 +54,7 @@ public class FavoriteServiceImpl implements FavoriteService {
 		
 		favoriteRepository.delete(fav);
 		
-		if(findFavoriteByFavoritePK(fav) != null) {
+		if(findFavoriteByUserId(fav.getFavoritePK().getUserId()) != null) {
 			return false;
 		}
 		
