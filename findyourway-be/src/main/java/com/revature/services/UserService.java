@@ -15,7 +15,7 @@ public interface UserService {
 	public User findUserByLastname(String lastname);
 	public User findUserByLocation(String location);
 	public User updateUserById(User u);
-	public boolean deleteUserById(Integer id);
+	public boolean deleteUser(User u);
 	public User loginUser(User u);
 	
 	public boolean isEmailUnique(User u);

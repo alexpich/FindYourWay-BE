@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BootDriver {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BootDriver.class, args);
-		
+		SpringApplication.run(BootDriver.class, args);	
 	}
 }
