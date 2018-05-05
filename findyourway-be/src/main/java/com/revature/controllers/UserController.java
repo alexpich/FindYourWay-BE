@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +30,18 @@ public class UserController {
 		return userService.addUser(newUser);
 	}
 	
+	@PatchMapping(produces="application/json", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public User updateUser(@Valid @RequestBody User updatedUser) {
+		return userService.updateUserById(updatedUser);
+	}
+
 	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<User> findAllUsers() {
 		return userService.findAllUsers();
+	}
+	
+	@PostMapping(value="/login", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public User loginUser(@RequestBody User user) {
+		return userService.loginUser(user);
 	}
 }

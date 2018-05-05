@@ -20,7 +20,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User addUser(User newUser) {
 		for(User user : findAllUsers()) {
-			if(user.getEmail().equals(newUser.getEmail())) {
+			if(user.getUsername().equals(newUser.getUsername()) 
+					|| user.getEmail().equals(newUser.getEmail())) {
 				return null;
 			}
 		}
@@ -35,6 +36,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findUserById(Integer id) {
 		return userRepo.getOne(id);
+	}
+	
+	@Override
+	public User findUserByUsername(String username) {
+		return userRepo.findUserByUsername(username);
 	}
 
 	@Override
@@ -63,13 +69,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUserById(Integer id) {
-		userRepo.deleteById(id);;
+	public boolean deleteUserById(Integer id) {
+		userRepo.deleteById(id);
+		return userRepo.existsById(id);
 	}
 
 	@Override
 	public User loginUser(User u) {
-		return userRepo.findUserByEmailAndPassword(u.getEmail(), u.getPassword());
+		return userRepo.findUserByUsernameAndPassword(u.getUsername(), u.getPassword());
 	}
 
 	@Override

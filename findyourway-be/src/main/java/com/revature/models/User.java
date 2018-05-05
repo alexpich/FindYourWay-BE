@@ -31,13 +31,17 @@ public class User implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer userId;
 	
-	@Column(name="email")
+	@Column(name="username")
 	@NotNull
-	private String email;
+	private String username;
 	
 	@Column(name="password")
 	@NotNull
 	private String password;
+	
+	@Column(name="email")
+	@NotNull
+	private String email;
 	
 	@Column(name="firstname")
 	@NotNull
@@ -58,12 +62,25 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(Integer userId, @NotNull String email, @NotNull String password, @NotNull String firstname,
-			@NotNull String lastname, @NotNull String location, @NotNull Integer points) {
+	public User(Integer userId, @NotNull String username, @NotNull String password, @NotNull String email,
+			@NotNull String firstname, @NotNull String lastname, @NotNull String location, @NotNull Integer points) {
 		super();
 		this.userId = userId;
-		this.email = email;
+		this.username = username;
 		this.password = password;
+		this.email = email;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.location = location;
+		this.points = points;
+	}
+
+	public User(@NotNull String username, @NotNull String password, @NotNull String email, @NotNull String firstname,
+			@NotNull String lastname, @NotNull String location, @NotNull Integer points) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.location = location;
@@ -78,12 +95,12 @@ public class User implements Serializable {
 		this.userId = userId;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -92,6 +109,14 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getFirstname() {
@@ -137,6 +162,7 @@ public class User implements Serializable {
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((points == null) ? 0 : points.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -184,12 +210,18 @@ public class User implements Serializable {
 				return false;
 		} else if (!userId.equals(other.userId))
 			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", email=" + email + ", password=" + password + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", location=" + location + ", points=" + points + "]";
-	}	
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", firstname=" + firstname + ", lastname=" + lastname + ", location=" + location + ", points="
+				+ points + "]";
+	}
 }
