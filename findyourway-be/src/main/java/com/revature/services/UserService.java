@@ -8,6 +8,7 @@ public interface UserService {
 	
 	public User addUser(User newUser);
 	public List<User> findAllUsers();
+	public List<User> findAllUsersByRoleId(Integer roleId);
 	public User findUserById(Integer id);
 	public User findUserByEmail(String email);
 	public User findUserByUsername(String username);

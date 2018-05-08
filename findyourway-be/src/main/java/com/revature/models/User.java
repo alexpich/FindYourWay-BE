@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
@@ -30,6 +32,12 @@ public class User implements Serializable {
 	@Column(name="userId")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer userId;
+	
+	@Column(name="roleId")
+	@NotNull
+	@Min(1)
+	@Max(2)
+	private Integer roleId;
 	
 	@Column(name="username")
 	@NotNull
@@ -58,14 +66,16 @@ public class User implements Serializable {
 	@Column(name="points")
 	@NotNull
 	private Integer points;
-	
+
 	public User() {
 	}
 
-	public User(Integer userId, @NotNull String username, @NotNull String password, @NotNull String email,
-			@NotNull String firstname, @NotNull String lastname, @NotNull String location, @NotNull Integer points) {
+	public User(Integer userId, @NotNull @Min(1) @Max(2) Integer roleId, @NotNull String username,
+			@NotNull String password, @NotNull String email, @NotNull String firstname, @NotNull String lastname,
+			@NotNull String location, @NotNull Integer points) {
 		super();
 		this.userId = userId;
+		this.roleId = roleId;
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -75,9 +85,10 @@ public class User implements Serializable {
 		this.points = points;
 	}
 
-	public User(@NotNull String username, @NotNull String password, @NotNull String email, @NotNull String firstname,
+	public User(@NotNull @Min(1) @Max(2) Integer roleId, @NotNull String username, @NotNull String password, @NotNull String email, @NotNull String firstname,
 			@NotNull String lastname, @NotNull String location, @NotNull Integer points) {
 		super();
+		this.roleId = roleId;
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -93,6 +104,14 @@ public class User implements Serializable {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	public Integer getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 
 	public String getUsername() {
@@ -161,6 +180,7 @@ public class User implements Serializable {
 		result = prime * result + ((location == null) ? 0 : location.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((points == null) ? 0 : points.hashCode());
+		result = prime * result + ((roleId == null) ? 0 : roleId.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -205,6 +225,11 @@ public class User implements Serializable {
 				return false;
 		} else if (!points.equals(other.points))
 			return false;
+		if (roleId == null) {
+			if (other.roleId != null)
+				return false;
+		} else if (!roleId.equals(other.roleId))
+			return false;
 		if (userId == null) {
 			if (other.userId != null)
 				return false;
@@ -220,8 +245,8 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", email=" + email
-				+ ", firstname=" + firstname + ", lastname=" + lastname + ", location=" + location + ", points="
-				+ points + "]";
+		return "User [userId=" + userId + ", roleId=" + roleId + ", username=" + username + ", password=" + password
+				+ ", email=" + email + ", firstname=" + firstname + ", lastname=" + lastname + ", location=" + location
+				+ ", points=" + points + "]";
 	}
 }
