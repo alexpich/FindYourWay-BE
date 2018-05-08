@@ -1,0 +1,12 @@
+com\revature\controllers\UserController.class
+com\revature\services\UserServiceImpl.class
+com\revature\repositories\FavoriteRepository.class
+com\revature\services\FavoriteService.class
+com\revature\controllers\FavoriteController.class
+com\revature\services\FavoriteServiceImpl.class
+com\revature\services\UserService.class
+com\revature\models\FavoritePK.class
+com\revature\models\User.class
+com\revature\repositories\UserRepository.class
+com\revature\models\Favorite.class
+com\revature\BootDriver.class

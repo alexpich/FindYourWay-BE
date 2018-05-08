@@ -1,5 +1,7 @@
 package com.revature.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,5 +21,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	public User findUserByLocation(String location);
 	
 	public User findUserByUsernameAndPassword(String username, String password);
+	
+	public List<User> findAllByRoleId(Integer roleId);
 
 }
