@@ -11,4 +11,4 @@ phases:
      - mvn package
 artifacts:
  files:
-  - target/FindYourWay-BE-0.0.1-SNAPSHOT.jar
+  - target/FindYourWayBE-0.0.1-SNAPSHOT.jar
